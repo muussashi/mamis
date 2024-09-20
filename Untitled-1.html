@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Счетчик нажатий на Mamysh</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        #container {
+            display: inline-block;
+            padding: 20px;
+            border-radius: 50%;
+            background-color: black;
+            transition: box-shadow 0.5s ease;
+        }
+
+        #clickCounter {
+            font-size: 48px;
+            margin-top: 20px;
+            opacity: 1;
+            transition: opacity 0.5s ease, color 0.5s ease;
+        }
+
+        #mamyshImage {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.1s ease, filter 0.5s ease;
+        }
+
+        #mamyshImage:active {
+            transform: scale(0.95);
+            filter: brightness(2);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Нажми на Mamysh!</h1>
+    
+    <div id="container">
+        <img id="mamyshImage" src="mamysh.png" alt="Mamysh" onclick="incrementCounter()">
+    </div>
+    
+    <div id="clickCounter">0</div>
+
+    <script>
+        let counter = 0;
+
+        function incrementCounter() {
+            counter++;
+            document.getElementById("clickCounter").textContent = counter;
+
+            // Включаем анимацию: рассеянное свечение вокруг картинки
+            document.getElementById("container").style.boxShadow = "0 0 40px 20px rgba(255, 255, 255, 0.5)";
+            document.getElementById("clickCounter").style.color = "black";
+            document.getElementById("clickCounter").style.opacity = 1;
+
+            // Возвращаем фон и счетчик обратно через 0.5 секунды
+            setTimeout(() => {
+                document.getElementById("container").style.boxShadow = "none";
+                document.getElementById("clickCounter").style.color = "white";
+                document.getElementById("clickCounter").style.opacity = 0.5;
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
